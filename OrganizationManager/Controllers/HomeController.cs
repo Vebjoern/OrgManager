@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using DataLibrary;
 
 namespace OrganizationManager.Controllers
 {
@@ -25,6 +26,15 @@ namespace OrganizationManager.Controllers
 
         public IActionResult Privacy()
         {
+            return View();
+        }
+
+        public async Task<IActionResult> FinnOrganisasjon()
+        {
+            int orgNr = 995412020;
+            BasicOrganization org = new BasicOrganization();
+            org.Notat = await BasicApiUsage.LoadOrg(orgNr);
+            ViewBag.Message = org.Notat;
             return View();
         }
 
