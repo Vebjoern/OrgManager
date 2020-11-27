@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using DataLibrary;
+using DataLibrary.BLL;
 
 namespace OrganizationManager.Controllers
 {
@@ -24,19 +25,45 @@ namespace OrganizationManager.Controllers
             return View();
         }
 
+        /*
         public IActionResult Privacy()
         {
             return View();
         }
+        */
 
-        public async Task<IActionResult> FinnOrganisasjon()
+        public IActionResult Search()
         {
-            int orgNr = 995412020;
-            BasicOrganization org = new BasicOrganization();
-            org.Notat = await BasicApiUsage.LoadOrg(orgNr);
-            ViewBag.Message = org.Notat;
             return View();
         }
+        [HttpPost]
+        public IActionResult Search(Models.OrgSearchByParameters model)
+        {
+            if (ModelState.IsValid)
+            {
+                OrgProcessor.CreateNewOrgSearchByParameters(model.navn, model.fraAntallAnsatte, model.tilAntallAnsatte, model.konkurs,
+                    model.underTvangsavviklingEllerTvangsopplosning, model.underAvvikling, model.hjemmeside);
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        public IActionResult HentOrganisasjonsData()
+        {
+            return View();
+        }
+
+
+
+        /*public async Task<IActionResult> FinnOrganisasjon()
+        {
+            int orgNr = 995412020;
+            //BasicOrganization org = new BasicOrganization();
+            //org.Notat = await BasicApiUsage.LoadOrg(orgNr);
+            //ViewBag.Message = org.Notat;
+            return View();
+        }*/
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

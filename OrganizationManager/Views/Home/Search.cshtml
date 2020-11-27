@@ -1,0 +1,63 @@
+﻿@model OrganizationManager.Models.OrgSearchByParameters
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search</h1>
+
+<h4>OrgSearch</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Search">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="navn" class="control-label"></label>
+                <input asp-for="navn" class="form-control" />
+                <span asp-validation-for="navn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fraAntallAnsatte" class="control-label"></label>
+                <input asp-for="fraAntallAnsatte" class="form-control" />
+                <span asp-validation-for="fraAntallAnsatte" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tilAntallAnsatte" class="control-label"></label>
+                <input asp-for="tilAntallAnsatte" class="form-control" />
+                <span asp-validation-for="tilAntallAnsatte" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="konkurs" /> @Html.DisplayNameFor(model => model.konkurs)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="underTvangsavviklingEllerTvangsopplosning" /> @Html.DisplayNameFor(model => model.underTvangsavviklingEllerTvangsopplosning)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="underAvvikling" /> @Html.DisplayNameFor(model => model.underAvvikling)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="hjemmeside" class="control-label"></label>
+                <input asp-for="hjemmeside" class="form-control" />
+                <span asp-validation-for="hjemmeside" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
