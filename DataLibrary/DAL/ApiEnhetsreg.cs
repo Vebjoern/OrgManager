@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace DataLibrary
+namespace DataLibrary.DAL
 {
     public static class ApiEnhetsreg
     {

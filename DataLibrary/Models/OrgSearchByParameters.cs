@@ -24,8 +24,37 @@ namespace DataLibrary.Models
 
         public string createQueryString ()
         {
-            string s = "";
-            return s;
+            StringBuilder temp = new StringBuilder("?", 512);
+            if (this.navn != "")
+            {
+                temp.Append("navn=" + navn + "&");
+            }
+            if (this.fraAntallAnsatte > 0)
+            {
+                temp.Append("fraAntallAnsatte=" + fraAntallAnsatte.ToString() + "&");
+            }
+            if (this.tilAntallAnsatte < 9999999)
+            {
+                temp.Append("tilAntallAnsatte=" + tilAntallAnsatte.ToString() + "&");
+            }
+            if (this.konkurs)
+            {
+                temp.Append("konkurs=true&");
+            }
+            if (this.underTvangsavviklingEllerTvangsopplosning)
+            {
+                temp.Append("underTvangsavviklingEllerTvangsopplosning=true&");
+            }
+            if (this.underAvvikling)
+            {
+                temp.Append("underAvvikling=true&");
+            }
+            if (this.hjemmeside != "")
+            {
+                temp.Append("hjemmeside=" + hjemmeside + "&");
+            }
+            temp.Length--;  //Practically removes last trailing '&' char
+            return temp.ToString();
         }
 
     }
