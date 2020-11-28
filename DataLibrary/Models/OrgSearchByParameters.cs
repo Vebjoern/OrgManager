@@ -25,7 +25,7 @@ namespace DataLibrary.Models
         public string createQueryString ()
         {
             StringBuilder temp = new StringBuilder("?", 512);
-            if (this.navn != "")
+            if (!String.IsNullOrEmpty(this.navn))
             {
                 temp.Append("navn=" + navn + "&");
             }
@@ -49,7 +49,7 @@ namespace DataLibrary.Models
             {
                 temp.Append("underAvvikling=true&");
             }
-            if (this.hjemmeside != "")
+            if (!String.IsNullOrEmpty(this.hjemmeside))
             {
                 temp.Append("hjemmeside=" + hjemmeside + "&");
             }

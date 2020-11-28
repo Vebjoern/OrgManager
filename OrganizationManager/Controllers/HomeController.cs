@@ -54,6 +54,17 @@ namespace OrganizationManager.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult HentOrganisasjonsData(Models.OrgSearchByOrgNumber model)
+        {
+            if (ModelState.IsValid)
+            {
+                OrgProcessor.GetOrgByOrgNo(model.organisasjonsnummer);
+            }
+
+            return View();
+        }
+
 
 
         /*public async Task<IActionResult> FinnOrganisasjon()

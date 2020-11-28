@@ -11,9 +11,9 @@ namespace DataLibrary.BLL
 {
     public static class OrgProcessor
     {
-        public static void GetOrgByOrgNo(int orgNo)
+        public static async void GetOrgByOrgNo(int orgNo)
         {
-            BasicApiUsage.LoadOrgByOrgNo(orgNo);
+            await BasicApiUsage.LoadOrgByOrgNo(orgNo);
         }
 
         public static async void  CreateNewOrgSearchByParameters(string name, int fraAntAnsatte, int tilAntAnsatte, bool konkursParam, bool avviklingOrOpplosningParam, 

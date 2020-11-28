@@ -31,15 +31,16 @@ namespace DataLibrary.DAL
 
         public static async Task<object> FindOrgsByQueryString(string query)
         {
-            string url = "/enheter/" + query;
+            string url = "https://data.brreg.no/enhetsregisteret/api/enheter" + query;
             ApiEnhetsreg.InitializeClient();
             using (HttpResponseMessage response = await ApiEnhetsreg.ApiClient.GetAsync(url))
             {
                 if (response.IsSuccessStatusCode)
                 {
-
+                    string s = "";
+                    s = await response.Content.ReadAsStringAsync();
                     //org = response.Content.ReadAsStringAsync().Result;
-                    return response;
+                    return s;
                 }
 
                 else

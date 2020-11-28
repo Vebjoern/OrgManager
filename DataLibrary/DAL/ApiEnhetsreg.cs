@@ -15,7 +15,7 @@ namespace DataLibrary.DAL
         public static void InitializeClient()
         {
             ApiClient = new HttpClient();
-            ApiClient.BaseAddress = new Uri("https://data.brreg.no/enhetsregisteret/api");
+            //ApiClient.BaseAddress = new Uri("https://data.brreg.no/enhetsregisteret/api");
             ApiClient.DefaultRequestHeaders.Accept.Clear();
             ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             
