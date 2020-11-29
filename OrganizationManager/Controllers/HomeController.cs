@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using DataLibrary;
+using DataLibrary.Models;
 using DataLibrary.BLL;
 
 namespace OrganizationManager.Controllers
@@ -38,11 +38,13 @@ namespace OrganizationManager.Controllers
         }
         [HttpPost]
         public IActionResult Search(Models.OrgSearchByParameters model)
+        //Currently not working due to issue with parsing JSON data
         {
             if (ModelState.IsValid)
             {
-                OrgProcessor.CreateNewOrgSearchByParameters(model.navn, model.fraAntallAnsatte, model.tilAntallAnsatte, model.konkurs,
-                    model.underTvangsavviklingEllerTvangsopplosning, model.underAvvikling, model.hjemmeside);
+                
+                List<FullOrgEmbed> orgs = OrgProcessor.OrgSearchByParameters(model.navn, model.fraAntallAnsatte, model.tilAntallAnsatte, model.konkurs,
+                model.underTvangsavviklingEllerTvangsopplosning, model.underAvvikling, model.hjemmeside).Result;
                 return RedirectToAction("Index");
             }
 
@@ -56,25 +58,17 @@ namespace OrganizationManager.Controllers
 
         [HttpPost]
         public IActionResult HentOrganisasjonsData(Models.OrgSearchByOrgNumber model)
+        //Currently not working due to issue with parsing JSON data
         {
             if (ModelState.IsValid)
             {
-                OrgProcessor.GetOrgByOrgNo(model.organisasjonsnummer);
+                FullOrg org = new FullOrg();
+                org = OrgProcessor.GetOrgByOrgNo(model.organisasjonsnummer).Result;
+                int i = 1;
             }
 
             return View();
         }
-
-
-
-        /*public async Task<IActionResult> FinnOrganisasjon()
-        {
-            int orgNr = 995412020;
-            //BasicOrganization org = new BasicOrganization();
-            //org.Notat = await BasicApiUsage.LoadOrg(orgNr);
-            //ViewBag.Message = org.Notat;
-            return View();
-        }*/
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

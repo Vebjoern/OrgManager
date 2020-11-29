@@ -8,7 +8,7 @@ using System.Net.Http.Headers;
 
 namespace DataLibrary.DAL
 {
-    public static class ApiEnhetsreg
+    public static class ApiHelper
     {
         public static HttpClient ApiClient { get; set; }
 
@@ -21,10 +21,5 @@ namespace DataLibrary.DAL
             
         }
 
-        /*public void GetBasicOrg(int orgNr)
-        {
-            //TODO: This
-        }
-        */
     }
 }
